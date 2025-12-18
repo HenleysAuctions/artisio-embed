@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Artisio Auctions</title>
+  <!-- Production Environment CSS -->
   <link rel="stylesheet" href="https://cdn.artisio.co/v1.14.5/css/bootstrap4.css">
   <link rel="stylesheet" href="https://cdn.artisio.co/v1.14.5/css/app.css">
   <style>
@@ -25,8 +26,8 @@
   <script>
     console.log("Artisio initialization starting...");
     
-    // Configuration - try both variable names
-    var config = {
+    // Configuration - MUST use artisioWebApp (capital W and A)
+    window.artisioWebApp = {
       clientId: "42411287",
       lang: "en",
       defaultPage: '/auctions',
@@ -108,39 +109,25 @@
       favoriteAuctionDefaultSortBy: 'asc'
     };
     
-    // Set both possible variable names
-    window.artisioWebapp = config;
-    window.artisioWebApp = config;
-    
-    console.log("Configuration set (both names):", config);
+    console.log("Configuration set:", window.artisioWebApp);
     console.log("Element exists:", document.getElementById('artisioTimedAuctions'));
-    
-    // Wait for DOM to be fully ready, then load Artisio script
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', loadArtisioScript);
-    } else {
-      loadArtisioScript();
-    }
-    
-    function loadArtisioScript() {
-      console.log("Loading Artisio script...");
-      
-      // Double check config is set
-      console.log("Final config check:", window.artisioWebapp);
-      
-      var script = document.createElement('script');
-      script.src = 'https://cdn.artisio.co/v1.14.5/js/app.js';
-      script.onload = function() {
-        console.log("Artisio script loaded successfully!");
-        setTimeout(function() {
-          console.log("Artisio object:", window.artisio);
-        }, 1000);
-      };
-      script.onerror = function() {
-        console.error("Failed to load Artisio script");
-      };
-      document.body.appendChild(script);
-    }
+  </script>
+  
+  <!-- Load Artisio Script -->
+  <script src="https://cdn.artisio.co/v1.14.5/js/app.js"></script>
+  
+  <script>
+    window.addEventListener('load', function() {
+      console.log("Page loaded");
+      setTimeout(function() {
+        console.log("Artisio object:", window.artisio);
+        if (window.artisio) {
+          console.log("✅ Artisio loaded successfully!");
+        } else {
+          console.error("❌ Artisio failed to load");
+        }
+      }, 2000);
+    });
   </script>
 </body>
 </html>
