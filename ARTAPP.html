@@ -25,8 +25,8 @@
   <script>
     console.log("Artisio initialization starting...");
     
-    // Configuration
-    window.artisioWebapp = {
+    // Configuration - try both variable names
+    var config = {
       clientId: "42411287",
       lang: "en",
       defaultPage: '/auctions',
@@ -108,7 +108,11 @@
       favoriteAuctionDefaultSortBy: 'asc'
     };
     
-    console.log("Configuration set:", window.artisioWebapp);
+    // Set both possible variable names
+    window.artisioWebapp = config;
+    window.artisioWebApp = config;
+    
+    console.log("Configuration set (both names):", config);
     console.log("Element exists:", document.getElementById('artisioTimedAuctions'));
   </script>
   
