@@ -114,17 +114,33 @@
     
     console.log("Configuration set (both names):", config);
     console.log("Element exists:", document.getElementById('artisioTimedAuctions'));
-  </script>
-  
-  <script src="https://cdn.artisio.co/v1.14.5/js/app.js"></script>
-  
-  <script>
-    window.addEventListener('load', function() {
-      console.log("Page loaded");
-      setTimeout(function() {
-        console.log("Artisio object:", window.artisio);
-      }, 2000);
-    });
+    
+    // Wait for DOM to be fully ready, then load Artisio script
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', loadArtisioScript);
+    } else {
+      loadArtisioScript();
+    }
+    
+    function loadArtisioScript() {
+      console.log("Loading Artisio script...");
+      
+      // Double check config is set
+      console.log("Final config check:", window.artisioWebapp);
+      
+      var script = document.createElement('script');
+      script.src = 'https://cdn.artisio.co/v1.14.5/js/app.js';
+      script.onload = function() {
+        console.log("Artisio script loaded successfully!");
+        setTimeout(function() {
+          console.log("Artisio object:", window.artisio);
+        }, 1000);
+      };
+      script.onerror = function() {
+        console.error("Failed to load Artisio script");
+      };
+      document.body.appendChild(script);
+    }
   </script>
 </body>
 </html>
