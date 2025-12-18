@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artisio Auctions</title>
+  <link rel="stylesheet" href="https://cdn.artisio.co/v1.14.5/css/bootstrap4.css">
+  <link rel="stylesheet" href="https://cdn.artisio.co/v1.14.5/css/app.css">
+  <style>
+    body { 
+      margin: 0; 
+      padding: 0; 
+      overflow-x: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    #artisioTimedAuctions { 
+      min-height: 100vh; 
+      width: 100%; 
+    }
+  </style>
+</head>
+<body>
+  <div id="artisioTimedAuctions"></div>
+  
+  <script>
+    console.log("Artisio initialization starting...");
+    
+    // Configuration
+    window.artisioWebapp = {
+      clientId: "42411287",
+      lang: "en",
+      defaultPage: '/auctions',
+      
+      // Authentication & Bidding
+      enableAuth: true,
+      enableBidding: true,
+      allowBidderAutoRegistration: true,
+      
+      // Australian Formatting
+      currencyFormat: '{symbol}{number:000,000.00}',
+      dateFormat: 'DD/MM/YYYY',
+      datetimeFormat: 'DD/MM/YYYY HH:mm',
+      datetimeFormatWithSeconds: 'DD/MM/YYYY HH:mm:ss',
+      timeFormat: 'HH:mm',
+      timeWithSecondsFormat: 'HH:mm:ss',
+      
+      // Display Features
+      showCountdown: true,
+      showLatestBids: true,
+      groupLotsOnMyBidsPage: true,
+      groupLotsOnFavouritesPage: true,
+      
+      // Show all lots (active + sold)
+      filterLotStatusOptions: ['all', 'published', 'sold', 'unsold'],
+      defaultLotStatus: 'all',
+      
+      // Navigation
+      showBreadcrumbs: true,
+      jumpToLot: true,
+      showPrevNextList: true,
+      
+      // Bidding Features
+      enableWatchlist: true,
+      showReserveStatus: true,
+      showBiddingLimit: true,
+      showBidAmountsInConfirmation: true,
+      
+      // Filters & Sorting
+      enableFilters: true,
+      enableSorting: true,
+      autoApplyFilters: true,
+      
+      // Social & Sharing
+      socialShares: false,
+      printButton: false,
+      
+      // Layout
+      descriptionInSidebar: false,
+      sharesInSidebar: false,
+      
+      // Pagination
+      paginationType: 'PAGINATION',
+      lotPaginationLimit: 25,
+      auctionPaginationLimit: 25,
+      perPageOptions: [10, 25, 50, 100],
+      perPageSelect: true,
+      scrollToTopOnPageChange: true,
+      
+      // Image Display
+      fullScreenButtonOnImage: true,
+      dontOpenOnImageClick: false,
+      imageCarouselPosition: 'bottom',
+      
+      // Auction Display
+      showZeroLotCount: true,
+      showAuctionBiddingOpenBadge: true,
+      showAuctionType: true,
+      showCollectionInfo: true,
+      
+      // Default Sorting
+      lotDefaultSortField: 'end_date',
+      lotDefaultSortBy: 'asc',
+      auctionDefaultSortField: 'end_date',
+      auctionDefaultSortBy: 'asc',
+      favoriteLotDefaultSortField: 'end_date',
+      favoriteLotDefaultSortBy: 'asc',
+      favoriteAuctionDefaultSortField: 'end_date',
+      favoriteAuctionDefaultSortBy: 'asc'
+    };
+    
+    console.log("Configuration set:", window.artisioWebapp);
+    console.log("Element exists:", document.getElementById('artisioTimedAuctions'));
+  </script>
+  
+  <script src="https://cdn.artisio.co/v1.14.5/js/app.js"></script>
+  
+  <script>
+    window.addEventListener('load', function() {
+      console.log("Page loaded");
+      setTimeout(function() {
+        console.log("Artisio object:", window.artisio);
+      }, 2000);
+    });
+  </script>
+</body>
+</html>
